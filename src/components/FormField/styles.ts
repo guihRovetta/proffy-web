@@ -28,7 +28,6 @@ export const Container = styled.div`
 `;
 
 export const Input = styled.input<InputProps>`
-  width: 35.2rem;
   height: 7.2rem;
   padding: 3.4rem 2.4rem 1.4rem 2.4rem;
 

@@ -53,7 +53,12 @@ export const FormWrapper = styled.div`
   align-items: center;
 `;
 
-export const FormContent = styled.div`
+export const FormContainer = styled.div`
+  width: 100%;
+  max-width: 35.2rem;
+`;
+
+export const Form = styled.form`
   h1 {
     color: var(--color-text-title);
     font-size: 3.6rem;
@@ -78,6 +83,31 @@ export const PasswordContainer = styled.div`
 
     &:visited {
       color: var(--color-text-complement);
+    }
+  }
+`;
+
+export const FooterWrapper = styled.div`
+  padding-top: 12.8rem;
+  display: flex;
+  justify-content: space-between;
+
+  > div {
+    display: flex;
+    flex-direction: column;
+
+    a {
+      color: var(--color-primary);
+      font-weight: 700;
+    }
+  }
+
+  > span {
+    color: var(--color-text-complement);
+    font-size: 1.4rem;
+
+    img {
+      padding-left: 0.8rem;
     }
   }
 `;
