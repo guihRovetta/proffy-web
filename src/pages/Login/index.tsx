@@ -1,19 +1,16 @@
 import React, { FormEvent } from 'react';
 import { Link } from 'react-router-dom';
 
+import LogoContainer from '../../components/LogoContainer';
 import FormField from '../../components/FormField';
 import FormFieldPassword from '../../components/FormFieldPassword';
 import CheckBox from '../../components/CheckBox';
 import Button from '../../components/Button';
 
-import logoImg from '../../assets/images/logo.svg';
 import heartIcon from '../../assets/images/icons/purple-heart.svg';
 
 import {
   Container,
-  LogoWrapper,
-  BackgroundWrapper,
-  LogoContent,
   FormWrapper,
   FormContainer,
   Form,
@@ -30,14 +27,7 @@ const Login: React.FC = () => {
 
   return (
     <Container>
-      <LogoWrapper>
-        <BackgroundWrapper>
-          <LogoContent>
-            <img src={logoImg} alt="Proffy" />
-            <h2>Sua plataforma de estudos online.</h2>
-          </LogoContent>
-        </BackgroundWrapper>
-      </LogoWrapper>
+      <LogoContainer />
 
       <FormWrapper>
         <FormContainer>
