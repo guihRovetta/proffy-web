@@ -7,6 +7,10 @@ export const Container = styled.div`
   height: 100vh;
 
   display: flex;
+
+  @media (max-width: 950px) {
+    flex-direction: column;
+  }
 `;
 
 export const LogoWrapper = styled.div`
@@ -16,6 +20,11 @@ export const LogoWrapper = styled.div`
   padding: 7.8rem 9.2rem;
 
   background: var(--color-primary);
+
+  @media (max-width: 950px) {
+    max-width: 100%;
+    padding: 3.6rem 3.6rem;
+  }
 `;
 
 export const BackgroundWrapper = styled.div`
@@ -28,11 +37,16 @@ export const BackgroundWrapper = styled.div`
 
   color: var(--color-text-in-primary);
   background: url(${backgroundImg});
+  background-size: cover;
 `;
 
 export const LogoContent = styled.div`
   img {
     height: 10rem;
+
+    @media (max-width: 950px) {
+      height: 7.2rem;
+    }
   }
 
   h2 {
@@ -51,6 +65,10 @@ export const FormWrapper = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+
+  @media (max-width: 950px) {
+    padding: 3.2rem 0;
+  }
 `;
 
 export const FormContainer = styled.div`
@@ -91,6 +109,10 @@ export const FooterWrapper = styled.div`
   padding-top: 12.8rem;
   display: flex;
   justify-content: space-between;
+
+  @media (max-width: 950px) {
+    padding-top: 4rem;
+  }
 
   > div {
     display: flex;
