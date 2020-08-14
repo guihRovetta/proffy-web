@@ -60,3 +60,24 @@ export const FormContent = styled.div`
     margin-bottom: 4rem;
   }
 `;
+
+export const PasswordContainer = styled.div`
+  display: flex;
+  justify-content: space-between;
+  padding-top: 2.4rem;
+  padding-bottom: 4rem;
+
+  a {
+    text-decoration: none;
+    color: var(--color-text-complement);
+    font-size: 1.4rem;
+
+    &:hover {
+      opacity: 0.8;
+    }
+
+    &:visited {
+      color: var(--color-text-complement);
+    }
+  }
+`;

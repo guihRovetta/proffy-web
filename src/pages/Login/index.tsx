@@ -1,7 +1,10 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 import FormField from '../../components/FormField';
 import FormFieldPassword from '../../components/FormFieldPassword';
+import CheckBox from '../../components/CheckBox';
+import Button from '../../components/Button';
 
 import logoImg from '../../assets/images/logo.svg';
 
@@ -12,6 +15,7 @@ import {
   LogoContent,
   FormWrapper,
   FormContent,
+  PasswordContainer,
 } from './styles';
 
 const Login: React.FC = () => {
@@ -25,6 +29,7 @@ const Login: React.FC = () => {
           </LogoContent>
         </BackgroundWrapper>
       </LogoWrapper>
+
       <FormWrapper>
         <FormContent>
           <h1>Fazer login</h1>
@@ -34,6 +39,11 @@ const Login: React.FC = () => {
             label="Senha"
             borderRadius="bottom"
           ></FormFieldPassword>
+          <PasswordContainer>
+            <CheckBox name="remember" label="Lembrar-me"></CheckBox>
+            <Link to="/forget">Esqueci minha senha</Link>
+          </PasswordContainer>
+          <Button>Entrar</Button>
         </FormContent>
       </FormWrapper>
     </Container>
