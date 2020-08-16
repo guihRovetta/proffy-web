@@ -5,8 +5,8 @@ import logoImg from '../../assets/images/icons/success-check-icon.svg';
 import { Container, BackgroundWrapper, LogoContent } from './styles';
 
 interface ModalProps {
-  title?: string;
-  message?: string;
+  title: string;
+  message: string;
 }
 
 const Modal: React.FC<ModalProps> = ({ title, message, children }) => {
@@ -15,11 +15,8 @@ const Modal: React.FC<ModalProps> = ({ title, message, children }) => {
       <BackgroundWrapper>
         <LogoContent>
           <img src={logoImg} alt="Proffy" />
-          <h1>Redefinição enviada!</h1>
-          <p>
-            Boa, agora é só checar o e-mail que foi enviado para você redefinir
-            sua senha e aproveitar os estudos.
-          </p>
+          <h1>{title}</h1>
+          <p>{message}</p>
           {children}
         </LogoContent>
       </BackgroundWrapper>

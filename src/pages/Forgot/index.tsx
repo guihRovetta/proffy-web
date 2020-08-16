@@ -1,5 +1,5 @@
-import React, { FormEvent } from 'react';
-import { Link } from 'react-router-dom';
+import React, { FormEvent, useState } from 'react';
+import { Link, useHistory } from 'react-router-dom';
 
 import LogoContainer from '../../components/LogoContainer';
 import FormField from '../../components/FormField';
@@ -11,10 +11,18 @@ import backIcon from '../../assets/images/icons/back.svg';
 import { Container, FormWrapper, FormContainer, Form } from './styles';
 
 const Forgot: React.FC = () => {
+  const history = useHistory();
+  const [modalOpen, setModalOpen] = useState(false);
+
   function handleForgot(e: FormEvent) {
     e.preventDefault();
 
+    setModalOpen(true);
     console.log('Logando....');
+  }
+
+  function handleBackToLogin() {
+    history.push('/login');
   }
 
   return (
@@ -36,7 +44,16 @@ const Forgot: React.FC = () => {
 
         <LogoContainer />
       </Container>
-      <Modal />
+
+      {modalOpen && (
+        <Modal
+          title="Redefinição enviada!"
+          message="Boa, agora é só checar o e-mail que foi enviado para você redefinir
+            sua senha e aproveitar os estudos."
+        >
+          <Button onClick={handleBackToLogin}>Voltar ao login</Button>
+        </Modal>
+      )}
     </>
   );
 };

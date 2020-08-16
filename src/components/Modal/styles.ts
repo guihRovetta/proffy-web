@@ -47,4 +47,8 @@ export const LogoContent = styled.div`
     max-width: 47.2rem;
     text-align: center;
   }
+
+  button {
+    max-width: 18.8rem;
+  }
 `;

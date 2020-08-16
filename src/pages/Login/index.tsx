@@ -1,5 +1,5 @@
 import React, { FormEvent } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 
 import LogoContainer from '../../components/LogoContainer';
 import FormField from '../../components/FormField';
@@ -19,9 +19,12 @@ import {
 } from './styles';
 
 const Login: React.FC = () => {
+  const history = useHistory();
+
   function handleLogin(e: FormEvent) {
     e.preventDefault();
 
+    history.push('/');
     console.log('Logando....');
   }
 
