@@ -9,11 +9,17 @@ import landingImg from '../../assets/images/landing.svg';
 import studyIcon from '../../assets/images/icons/study.svg';
 import giveClassesIcon from '../../assets/images/icons/give-classes.svg';
 import purpleHeartIcon from '../../assets/images/icons/purple-heart.svg';
+import logoffIcon from '../../assets/images/icons/quit.svg';
 
 import {
   Container,
-  Content,
+  TopContent,
+  TopWrapper,
+  ProfileContainer,
   LogoContainer,
+  BottomContent,
+  BottomWrapper,
+  InformationContainer,
   ButtonsContainer,
   TotalConnections,
 } from './styles';
@@ -31,35 +37,60 @@ function Landing() {
 
   return (
     <Container>
-      <Content>
-        <LogoContainer>
-          <img src={logoImg} alt="Proffy" />
-          <h2>Sua plataforma de estudos online.</h2>
-        </LogoContainer>
+      <TopContent>
+        <TopWrapper>
+          <ProfileContainer>
+            <div>
+              <img
+                src="https://avatars2.githubusercontent.com/u/9082472?s=460&u=766fef82d4a85fb1555aad72ebfb827a4f1f3b22&v=4"
+                alt="Meu Perfil"
+              />
+              <span>Guilherme Rovetta</span>
+            </div>
 
-        <img
-          src={landingImg}
-          alt="Plataforma de estudos"
-          className="hero-image"
-        />
+            <button>
+              <img src={logoffIcon} alt="Sair" />
+            </button>
+          </ProfileContainer>
 
-        <ButtonsContainer>
-          <Link to="/study" className="study">
-            <img src={studyIcon} alt="Estudar" />
-            Estudar
-          </Link>
+          <LogoContainer>
+            <img src={logoImg} alt="Proffy" />
+            <h2>Sua plataforma de estudos online.</h2>
+          </LogoContainer>
 
-          <Link to="/give-classes" className="give-classes">
-            <img src={giveClassesIcon} alt="Dar aulas" />
-            Dar aulas
-          </Link>
-        </ButtonsContainer>
+          <img
+            src={landingImg}
+            alt="Plataforma de estudos"
+            className="hero-image"
+          />
+        </TopWrapper>
+      </TopContent>
 
-        <TotalConnections>
-          Total de {totalConnections} conexões já realizadas
-          <img src={purpleHeartIcon} alt="Coração roxo"></img>
-        </TotalConnections>
-      </Content>
+      <BottomContent>
+        <BottomWrapper>
+          <InformationContainer>
+            <p>
+              Seja bem-vindo. <br /> <strong>O que deseja fazer?</strong>
+            </p>
+            <TotalConnections>
+              Total de {totalConnections} conexões já realizadas
+              <img src={purpleHeartIcon} alt="Coração roxo"></img>
+            </TotalConnections>
+          </InformationContainer>
+
+          <ButtonsContainer>
+            <Link to="/study" className="study">
+              <img src={studyIcon} alt="Estudar" />
+              Estudar
+            </Link>
+
+            <Link to="/give-classes" className="give-classes">
+              <img src={giveClassesIcon} alt="Dar aulas" />
+              Dar aulas
+            </Link>
+          </ButtonsContainer>
+        </BottomWrapper>
+      </BottomContent>
     </Container>
   );
 }

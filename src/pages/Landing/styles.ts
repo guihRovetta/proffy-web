@@ -5,74 +5,131 @@ export const Container = styled.div`
   height: 100vh;
 
   display: flex;
-  justify-content: center;
-  align-items: center;
+  flex-direction: column;
 
   color: var(--color-text-in-primary);
-  background: var(--color-primary);
+  background: var(--color-background);
 `;
 
-export const Content = styled.div`
+export const TopContent = styled.div`
+  background: var(--color-primary);
+  max-height: 53.3rem;
+  display: flex;
+  justify-content: center;
+`;
+
+export const TopWrapper = styled.div`
+  max-width: 1100px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-top: 2.4rem;
+  margin-bottom: 5.6rem;
+
+  display: grid;
+  grid-template-rows: 40px 350fr;
+  grid-template-columns: 1fr 1fr;
+  grid-row-gap: 6.3rem;
+  grid-template-areas:
+    'profile profile'
+    'logo hero';
+
   .hero-image {
-    width: 100%;
+    grid-area: hero;
+  }
+`;
+
+export const ProfileContainer = styled.div`
+  grid-area: profile;
+  display: flex;
+  justify-content: space-between;
+
+  div {
+    display: flex;
+    align-items: center;
+
+    img {
+      width: 4rem;
+      height: 4rem;
+      border-radius: 50%;
+      margin-right: 1.6rem;
+    }
+
+    span {
+      font-size: 1.4rem;
+    }
   }
 
-  @media (min-width: 1100px) {
-    max-width: 1100px;
-
-    display: grid;
-    grid-template-rows: 350px 1fr;
-    grid-template-columns: 2fr 1fr 1fr;
-    grid-template-areas:
-      'logo hero hero'
-      'buttons buttons total';
-
-    .hero-image {
-      grid-area: hero;
-      justify-self: end;
-    }
+  button {
+    width: 4rem;
+    height: 4rem;
+    border-radius: 0.8rem;
+    outline: 0;
+    border: none;
+    background: var(--color-primary-dark);
   }
 `;
 
 export const LogoContainer = styled.div`
-  text-align: center;
-  margin-bottom: 3.2rem;
-
-  img {
-    height: 10rem;
-  }
+  grid-area: logo;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  max-width: 434px;
 
   h2 {
+    max-width: 298px;
     font-weight: 500;
-    font-size: 2.4rem;
-    line-height: 4.6rem;
-    margin-top: 0.8rem;
+    font-size: 2.8rem;
+    color: var(--color-text-in-primary);
   }
+`;
 
-  @media (min-width: 1100px) {
-    grid-area: logo;
-    align-self: center;
-    text-align: left;
-    margin: 0;
+export const BottomContent = styled.div`
+  display: flex;
+  justify-content: center;
+`;
 
-    h2 {
-      text-align: initial;
-      font-size: 3.6rem;
-    }
+export const BottomWrapper = styled.div`
+  max-width: 1100px;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 5.6rem;
+`;
 
-    img {
-      height: 100%;
-    }
+export const InformationContainer = styled.div`
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  margin-right: 5.3rem;
+
+  > p {
+    font-size: 2rem;
+    color: var(--color-text-base);
+  }
+`;
+
+export const TotalConnections = styled.span`
+  font-size: 1.2rem;
+  color: var(--color-text-complement);
+  max-width: 13.4rem;
+  text-align: end;
+
+  img {
+    padding-left: 0.8rem;
   }
 `;
 
 export const ButtonsContainer = styled.div`
+  width: 100%;
   display: flex;
-  justify-content: center;
-  margin: 3.2rem 0;
+  justify-content: space-between;
 
   a {
-    width: 30rem;
+    width: 28.4rem;
     height: 10.4rem;
     border-radius: 0.8rem;
     font: 700 2rem Archivo;
@@ -85,59 +142,30 @@ export const ButtonsContainer = styled.div`
     color: var(--color-button-text);
 
     transition: background-color 0.2s;
-  }
 
-  a:first-child {
-    margin-right: 1.6rem;
-  }
-
-  a img {
-    width: 4rem;
-  }
-
-  a.study {
-    background: var(--color-primary-lighter);
-  }
-
-  a.study:hover {
-    background: var(--color-primary-light);
-  }
-
-  a.give-classes {
-    background: var(--color-secundary);
-  }
-
-  a.give-classes:hover {
-    background: var(--color-secundary-dark);
-  }
-
-  a img {
-    margin-right: 2.4rem;
-  }
-
-  @media (min-width: 1100px) {
-    grid-area: buttons;
-    justify-content: flex-start;
-
-    a {
-      font-size: 2.4rem;
+    img {
+      width: 4rem;
+      margin-right: 2.4rem;
     }
-  }
-`;
 
-export const TotalConnections = styled.span`
-  font-size: 1.4rem;
+    &:first-child {
+      margin-right: 1.6rem;
+    }
 
-  display: flex;
-  align-items: center;
-  justify-content: center;
+    &.study {
+      background: var(--color-primary);
+    }
 
-  img {
-    margin-left: 0.8rem;
-  }
+    &.study:hover {
+      background: var(--color-primary-light);
+    }
 
-  @media (min-width: 1100px) {
-    grid-area: total;
-    justify-self: end;
+    &.give-classes {
+      background: var(--color-secundary);
+    }
+
+    &.give-classes:hover {
+      background: var(--color-secundary-dark);
+    }
   }
 `;
