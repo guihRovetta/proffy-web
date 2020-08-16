@@ -45,7 +45,7 @@ const Login: React.FC = () => {
             ></FormFieldPassword>
             <PasswordContainer>
               <CheckBox name="remember" label="Lembrar-me"></CheckBox>
-              <Link to="/forget">Esqueci minha senha</Link>
+              <Link to="/forgot">Esqueci minha senha</Link>
             </PasswordContainer>
             <Button>Entrar</Button>
           </Form>
