@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 import backgroundImg from '../../assets/images/background.svg';
 
-export const LogoWrapper = styled.div`
+export const Container = styled.div`
   max-width: 76.8rem;
   height: 100%;
   width: 100%;

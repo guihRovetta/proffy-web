@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import LogoContainer from '../../components/LogoContainer';
 import FormField from '../../components/FormField';
 import Button from '../../components/Button';
+import Modal from '../../components/Modal';
 
 import backIcon from '../../assets/images/icons/back.svg';
 
@@ -17,23 +18,26 @@ const Forgot: React.FC = () => {
   }
 
   return (
-    <Container>
-      <FormWrapper>
-        <FormContainer>
-          <Link to="/login">
-            <img src={backIcon} alt="Voltar" />
-          </Link>
-          <Form onSubmit={handleForgot}>
-            <h1>Eita, esqueceu sua senha?</h1>
-            <p>Não esquenta, vamos dar um jeito nisso</p>
-            <FormField name="email" label="E-mail"></FormField>
-            <Button>Enviar</Button>
-          </Form>
-        </FormContainer>
-      </FormWrapper>
+    <>
+      <Container>
+        <FormWrapper>
+          <FormContainer>
+            <Link to="/login">
+              <img src={backIcon} alt="Voltar" />
+            </Link>
+            <Form onSubmit={handleForgot}>
+              <h1>Eita, esqueceu sua senha?</h1>
+              <p>Não esquenta, vamos dar um jeito nisso</p>
+              <FormField name="email" label="E-mail"></FormField>
+              <Button>Enviar</Button>
+            </Form>
+          </FormContainer>
+        </FormWrapper>
 
-      <LogoContainer />
-    </Container>
+        <LogoContainer />
+      </Container>
+      <Modal />
+    </>
   );
 };
 
