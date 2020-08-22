@@ -80,6 +80,7 @@ function TeacherForm() {
       <PageHeader
         title="Que incrível que você quer dar aulas."
         description="O primeiro passo é preencher esse formulário de inscrição"
+        pageTitle="Dar aulas"
       />
 
       <main>
