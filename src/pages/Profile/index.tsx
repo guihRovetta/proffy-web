@@ -7,13 +7,20 @@ import Textarea from '../../components/Textarea';
 import Select from '../../components/Select';
 
 import warningIcon from '../../assets/images/icons/warning.svg';
-import rocketIcon from '../../assets/images/icons/rocket.svg';
+import cameraIcon from '../../assets/images/icons/camera.svg';
 
 import api from '../../services/api';
 
-import { Container, ScheduleItem } from './styles';
+import {
+  Container,
+  ScheduleItem,
+  ProfileCover,
+  ProfileImageContainer,
+  ProfileImage,
+  CameraIconImage,
+} from './styles';
 
-function TeacherForm() {
+function Profile() {
   const [name, setName] = useState('');
   const [avatar, setAvatar] = useState('');
   const [whatsapp, setWhatsapp] = useState('');
@@ -79,13 +86,19 @@ function TeacherForm() {
 
   return (
     <Container>
-      <PageHeader
-        title="Que incrível que você quer dar aulas."
-        description="O primeiro passo é preencher esse formulário de inscrição"
-        pageTitle="Dar aulas"
-        emoji={rocketIcon}
-        emojiMessage="Prepare-se! Vai ser o máximo"
-      />
+      <PageHeader pageTitle="Meu perfil" headerHeightSize="535px">
+        <ProfileCover>
+          <ProfileImageContainer>
+            <ProfileImage src="https://github.com/guihRovetta.png" />
+            <CameraIconImage>
+              <img src={cameraIcon} alt="Camera" />
+            </CameraIconImage>
+          </ProfileImageContainer>
+
+          <strong>Guilherme Rovetta</strong>
+          <span>Geografia</span>
+        </ProfileCover>
+      </PageHeader>
 
       <main>
         <form onSubmit={handleCreateClass}>
@@ -230,4 +243,4 @@ function TeacherForm() {
   );
 }
 
-export default TeacherForm;
+export default Profile;

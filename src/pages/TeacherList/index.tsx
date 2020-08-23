@@ -36,10 +36,10 @@ function TeacherList() {
     <Container>
       <PageHeader
         title="Esses são os proffys disponíveis."
-        description="Selecione as opções abaixo para filtrar os proffys"
         pageTitle="Estudar"
         emoji={teacherIcon}
         emojiMessage="Nós temos 32 professores"
+        headerHeightSize="320px"
       >
         <SearchTeachersForm onSubmit={handleSearchTeachers}>
           <Select

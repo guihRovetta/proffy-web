@@ -7,6 +7,7 @@ import TeacherForm from './pages/TeacherForm';
 import Login from './pages/Login';
 import Register from './pages/Register';
 import Forgot from './pages/Forgot';
+import Profile from './pages/Profile';
 
 function Routes() {
   return (
@@ -17,6 +18,7 @@ function Routes() {
       <Route path="/forgot" component={Forgot} />
       <Route path="/study" component={TeacherList} />
       <Route path="/give-classes" component={TeacherForm} />
+      <Route path="/profile" component={Profile} />
     </BrowserRouter>
   );
 }

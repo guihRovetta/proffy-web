@@ -4,14 +4,21 @@ import { Link } from 'react-router-dom';
 import logoImg from '../../assets/images/logo.svg';
 import backIcon from '../../assets/images/icons/back.svg';
 
-import { Header, TopBarContainer, TopBarWrapper, Content } from './styles';
+import {
+  Header,
+  TopBarContainer,
+  TopBarWrapper,
+  Content,
+  TitleContainer,
+} from './styles';
 
 interface PageHeaderProps {
-  title: string;
+  title?: string;
   description?: string;
   pageTitle?: string;
   emoji?: string;
   emojiMessage?: string;
+  headerHeightSize?: string;
 }
 
 const PageHeader: React.FC<PageHeaderProps> = ({
@@ -20,10 +27,11 @@ const PageHeader: React.FC<PageHeaderProps> = ({
   pageTitle,
   emoji,
   emojiMessage,
+  headerHeightSize,
   children,
 }) => {
   return (
-    <Header>
+    <Header heightSize={headerHeightSize}>
       <TopBarContainer>
         <TopBarWrapper>
           <Link to="/">
@@ -39,7 +47,7 @@ const PageHeader: React.FC<PageHeaderProps> = ({
       </TopBarContainer>
 
       <Content>
-        <div>
+        <TitleContainer>
           <strong>{title}</strong>
 
           {emojiMessage && (
@@ -48,7 +56,7 @@ const PageHeader: React.FC<PageHeaderProps> = ({
               <p>{emojiMessage}</p>
             </div>
           )}
-        </div>
+        </TitleContainer>
 
         {description && <p>{description}</p>}
 
