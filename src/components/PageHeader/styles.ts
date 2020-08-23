@@ -37,9 +37,11 @@ export const TopBarWrapper = styled.div`
       opacity: 0.6;
     }
 
-    img {
-      &:last-child {
-        height: 1.6rem;
+    &:last-child {
+      img {
+        &:last-child {
+          height: 1.6rem;
+        }
       }
     }
   }

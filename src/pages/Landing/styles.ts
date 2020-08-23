@@ -24,19 +24,48 @@ export const TopWrapper = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
+  align-items: center;
   margin-top: 2.4rem;
   margin-bottom: 5.6rem;
 
   display: grid;
-  grid-template-rows: 40px 350fr;
+  grid-template-rows: 40px 350px;
   grid-template-columns: 1fr 1fr;
   grid-row-gap: 6.3rem;
   grid-template-areas:
     'profile profile'
     'logo hero';
 
+  @media (min-width: 700px) {
+    margin-right: 1.6rem;
+    margin-left: 1.6rem;
+  }
+
+  @media (max-width: 700px) {
+    grid-template-rows: 40px 190px;
+    grid-template-columns: 1fr;
+    grid-row-gap: 40px;
+    grid-template-areas:
+      'profile'
+      'hero';
+
+    margin-bottom: 3.2rem;
+  }
+
+  @media (max-width: 375px) and (max-height: 640px) {
+    grid-template-rows: 40px 128px;
+    grid-row-gap: 16px;
+  }
+
   .hero-image {
     grid-area: hero;
+    width: 100%;
+
+    @media (max-width: 700px) {
+      width: 100%;
+      height: 100%;
+      padding: 0 2.4rem;
+    }
   }
 `;
 
@@ -44,6 +73,10 @@ export const ProfileContainer = styled.div`
   grid-area: profile;
   display: flex;
   justify-content: space-between;
+
+  @media (max-width: 700px) {
+    padding: 0 3.2rem;
+  }
 
   div {
     display: flex;
@@ -78,6 +111,14 @@ export const LogoContainer = styled.div`
   justify-content: center;
   max-width: 434px;
 
+  @media (max-width: 700px) {
+    display: none;
+  }
+
+  > img {
+    width: 100%;
+  }
+
   h2 {
     max-width: 298px;
     font-weight: 500;
@@ -98,13 +139,27 @@ export const BottomWrapper = styled.div`
   justify-content: space-between;
   align-items: center;
   margin-top: 5.6rem;
+
+  @media (min-width: 700px) {
+    margin-right: 1.6rem;
+    margin-left: 1.6rem;
+  }
+
+  @media (max-width: 700px) {
+    flex-direction: column;
+    padding: 0 3.2rem;
+    margin-top: 4.8rem;
+  }
 `;
 
 export const InformationContainer = styled.div`
   display: flex;
   justify-content: space-between;
   width: 100%;
-  margin-right: 5.3rem;
+
+  @media (min-width: 700px) {
+    margin-right: 5.3rem;
+  }
 
   > p {
     font-size: 2rem;
@@ -118,6 +173,10 @@ export const TotalConnections = styled.span`
   max-width: 13.4rem;
   text-align: end;
 
+  @media (max-width: 700px) {
+    display: none;
+  }
+
   img {
     padding-left: 0.8rem;
   }
@@ -128,8 +187,14 @@ export const ButtonsContainer = styled.div`
   display: flex;
   justify-content: space-between;
 
+  @media (max-width: 700px) {
+    margin-top: 3.2rem;
+    margin-bottom: 4.8rem;
+  }
+
   a {
-    width: 28.4rem;
+    max-width: 28.4rem;
+    width: 100%;
     height: 10.4rem;
     border-radius: 0.8rem;
     font: 700 2rem Archivo;
@@ -142,6 +207,14 @@ export const ButtonsContainer = styled.div`
     color: var(--color-button-text);
 
     transition: background-color 0.2s;
+
+    @media (max-width: 700px) {
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 3.2rem;
+      align-items: flex-start;
+      height: 15.8rem;
+    }
 
     img {
       width: 4rem;
@@ -167,5 +240,21 @@ export const ButtonsContainer = styled.div`
     &.give-classes:hover {
       background: var(--color-secundary-dark);
     }
+  }
+`;
+
+export const TotalConnectionsMobile = styled.span`
+  font-size: 1.2rem;
+  color: var(--color-text-complement);
+  max-width: 13.4rem;
+  align-self: flex-start;
+  margin-bottom: 3.2rem;
+
+  @media (min-width: 700px) {
+    display: none;
+  }
+
+  img {
+    padding-left: 0.8rem;
   }
 `;

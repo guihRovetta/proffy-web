@@ -22,6 +22,7 @@ import {
   InformationContainer,
   ButtonsContainer,
   TotalConnections,
+  TotalConnectionsMobile,
 } from './styles';
 
 function Landing() {
@@ -89,6 +90,11 @@ function Landing() {
               Dar aulas
             </Link>
           </ButtonsContainer>
+
+          <TotalConnectionsMobile>
+            Total de {totalConnections} conexões já realizadas
+            <img src={purpleHeartIcon} alt="Coração roxo"></img>
+          </TotalConnectionsMobile>
         </BottomWrapper>
       </BottomContent>
     </Container>
