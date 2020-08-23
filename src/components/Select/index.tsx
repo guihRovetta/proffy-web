@@ -1,6 +1,6 @@
 import React, { SelectHTMLAttributes } from 'react';
 
-import './styles.css';
+import { Container } from './styles';
 
 interface SelectProps extends SelectHTMLAttributes<HTMLSelectElement> {
   name: string;
@@ -13,11 +13,11 @@ interface SelectProps extends SelectHTMLAttributes<HTMLSelectElement> {
 
 const Select: React.FC<SelectProps> = ({ label, name, options, ...rest }) => {
   return (
-    <div className="select-block">
+    <Container className="select-block">
       <label htmlFor={name}>{label}</label>
       <select value="" id={name} {...rest}>
         <option value="" disabled hidden>
-          Selecione uma opção
+          Selecione
         </option>
 
         {options.map((option) => {
@@ -28,7 +28,7 @@ const Select: React.FC<SelectProps> = ({ label, name, options, ...rest }) => {
           );
         })}
       </select>
-    </div>
+    </Container>
   );
 };
 
