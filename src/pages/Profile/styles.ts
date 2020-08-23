@@ -56,8 +56,7 @@ export const Container = styled.div`
         }
       }
 
-      .input-block + .textarea-block,
-      .select-block + .input-block {
+      .input-block + .textarea-block {
         margin-top: 2.4rem;
       }
     }
@@ -122,6 +121,8 @@ export const Container = styled.div`
   }
 `;
 
+export const ScheduleContainer = styled.div``;
+
 export const ScheduleItem = styled.div`
   @media (min-width: 700px) {
     display: grid;
@@ -134,6 +135,33 @@ export const ScheduleItem = styled.div`
   }
 `;
 
+export const ScheduleButtonContainer = styled.div`
+  display: flex;
+  align-items: center;
+  margin-top: 1.6rem;
+  margin-bottom: 2.4rem;
+
+  div {
+    border-bottom: 1px solid var(--color-line-in-white);
+    flex: 1;
+  }
+
+  button {
+    outline: 0;
+    border: 0;
+    cursor: pointer;
+    background-color: transparent;
+    color: var(--color-danger);
+    padding: 0 2.4rem;
+    font: 700 1.4rem Archivo;
+    transition: opacity 0.2s;
+
+    &:hover {
+      opacity: 0.8;
+    }
+  }
+`;
+
 export const ProfileCover = styled.div`
   background: url(${backgroundImg});
   display: flex;
@@ -142,6 +170,7 @@ export const ProfileCover = styled.div`
 
   strong {
     font: 700 3.6rem Archivo;
+    line-height: 2.5rem;
     color: var(--color-title-in-primary);
     margin-top: 3.2rem;
     margin-bottom: 1.6rem;
@@ -149,6 +178,7 @@ export const ProfileCover = styled.div`
 
   span {
     font-size: 2.4rem;
+    line-height: 2.6rem;
     color: var(--color-text-in-primary);
   }
 `;
@@ -188,5 +218,42 @@ export const CameraIconImage = styled.button`
   img {
     width: 2.4rem;
     height: 2.4rem;
+  }
+`;
+
+export const InputNameContainer = styled.div`
+  display: flex;
+  margin-bottom: 2.4rem;
+
+  .input-block {
+    &:first-child {
+      margin-right: 3.2rem;
+    }
+
+    &:last-child {
+      margin-top: 0;
+    }
+  }
+`;
+
+export const InputContactContainer = styled.div`
+  display: grid;
+  grid-template-columns: 65% 35%;
+  margin-bottom: 2.4rem;
+
+  .select-block {
+    &:first-child {
+      margin-right: 3.2rem;
+    }
+  }
+
+  .input-block {
+    &:first-child {
+      margin-right: 3.2rem;
+    }
+
+    &:last-child {
+      margin-top: 0;
+    }
   }
 `;

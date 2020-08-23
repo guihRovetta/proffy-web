@@ -24,6 +24,7 @@ export default createGlobalStyle`
     --color-box-base: #ffffff;
     --color-box-footer: #fafafc;
     --color-button-disabled: #dcdce6;
+    --color-danger: #E33D3D;
   }
 
   * {

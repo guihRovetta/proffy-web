@@ -5,7 +5,7 @@ import drowpdownIcon from '../../assets/images/icons/dropdown.svg';
 export const Container = styled.div`
   position: relative;
 
-  + .select-block {
+  .select-block + .select-block {
     margin-top: 1.4rem;
   }
 
