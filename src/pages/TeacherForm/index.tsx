@@ -7,6 +7,7 @@ import Textarea from '../../components/Textarea';
 import Select from '../../components/Select';
 
 import warningIcon from '../../assets/images/icons/warning.svg';
+import rocketIcon from '../../assets/images/icons/rocket.svg';
 
 import './styles.css';
 import api from '../../services/api';
@@ -81,6 +82,8 @@ function TeacherForm() {
         title="Que incrível que você quer dar aulas."
         description="O primeiro passo é preencher esse formulário de inscrição"
         pageTitle="Dar aulas"
+        emoji={rocketIcon}
+        emojiMessage="Prepare-se! Vai ser o máximo"
       />
 
       <main>

@@ -10,12 +10,16 @@ interface PageHeaderProps {
   title: string;
   description?: string;
   pageTitle?: string;
+  emoji?: string;
+  emojiMessage?: string;
 }
 
 const PageHeader: React.FC<PageHeaderProps> = ({
   title,
   description,
   pageTitle,
+  emoji,
+  emojiMessage,
   children,
 }) => {
   return (
@@ -37,6 +41,13 @@ const PageHeader: React.FC<PageHeaderProps> = ({
       <Content>
         <div>
           <strong>{title}</strong>
+
+          {emojiMessage && (
+            <div>
+              <img src={emoji} alt="Emoji" />
+              <p>{emojiMessage}</p>
+            </div>
+          )}
         </div>
 
         {description && <p>{description}</p>}

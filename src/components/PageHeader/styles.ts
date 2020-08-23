@@ -65,18 +65,39 @@ export const Content = styled.div`
   }
 
   > div {
-    @media (min-width: 700px) {
-      max-width: 376px;
-    }
-
     strong {
       font: 700 3.6rem Archivo;
       line-height: 4.2rem;
       color: var(--color-title-in-primary);
+
+      @media (min-width: 700px) {
+        max-width: 376px;
+      }
+    }
+
+    display: flex;
+    justify-content: space-between;
+
+    div {
+      &:last-child {
+        display: flex;
+
+        img {
+          width: 3.2rem;
+          height: 3.2rem;
+        }
+
+        p {
+          font-size: 1.2rem;
+          margin-left: 1.6rem;
+          color: var(--color-text-in-primary);
+          max-width: 105px;
+        }
+      }
     }
   }
 
-  p {
+  > p {
     max-width: 30rem;
     font-size: 1.6rem;
     line-height: 2.6rem;
