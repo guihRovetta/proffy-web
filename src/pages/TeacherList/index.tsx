@@ -9,7 +9,7 @@ import api from '../../services/api';
 
 import teacherIcon from '../../assets/images/icons/smile.svg';
 
-import './styles.css';
+import { Container, SearchTeachersForm } from './styles';
 
 function TeacherList() {
   const [teachers, setTeachers] = useState([]);
@@ -33,7 +33,7 @@ function TeacherList() {
   }
 
   return (
-    <div id="page-teacher-list" className="container">
+    <Container>
       <PageHeader
         title="Esses são os proffys disponíveis."
         description="Selecione as opções abaixo para filtrar os proffys"
@@ -41,7 +41,7 @@ function TeacherList() {
         emoji={teacherIcon}
         emojiMessage="Nós temos 32 professores"
       >
-        <form id="search-teachers" onSubmit={handleSearchTeachers}>
+        <SearchTeachersForm onSubmit={handleSearchTeachers}>
           <Select
             name="subject"
             label="Matéria"
@@ -92,7 +92,7 @@ function TeacherList() {
           />
 
           <button type="submit">Buscar</button>
-        </form>
+        </SearchTeachersForm>
       </PageHeader>
 
       <main>
@@ -101,7 +101,7 @@ function TeacherList() {
             return <TeacherItem teacher={teacher} key={teacher.id} />;
           })}
       </main>
-    </div>
+    </Container>
   );
 }
 

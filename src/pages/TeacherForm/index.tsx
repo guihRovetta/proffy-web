@@ -9,8 +9,9 @@ import Select from '../../components/Select';
 import warningIcon from '../../assets/images/icons/warning.svg';
 import rocketIcon from '../../assets/images/icons/rocket.svg';
 
-import './styles.css';
 import api from '../../services/api';
+
+import { Container, ScheduleItem } from './styles';
 
 function TeacherForm() {
   const [name, setName] = useState('');
@@ -77,7 +78,7 @@ function TeacherForm() {
   }
 
   return (
-    <div id="page-teacher-form" className="container">
+    <Container id="page-teacher-form" className="container">
       <PageHeader
         title="Que incrível que você quer dar aulas."
         description="O primeiro passo é preencher esse formulário de inscrição"
@@ -172,7 +173,7 @@ function TeacherForm() {
 
             {scheduleItems.map((scheduleItem, index) => {
               return (
-                <div className="schedule-item" key={index}>
+                <ScheduleItem key={index}>
                   <Select
                     name="week_day"
                     label="Dia da semana"
@@ -210,7 +211,7 @@ function TeacherForm() {
                       setScheduleItemValue(index, 'to', e.target.value)
                     }
                   />
-                </div>
+                </ScheduleItem>
               );
             })}
           </fieldset>
@@ -225,7 +226,7 @@ function TeacherForm() {
           </footer>
         </form>
       </main>
-    </div>
+    </Container>
   );
 }
 
