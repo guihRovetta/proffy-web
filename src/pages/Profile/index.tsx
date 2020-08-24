@@ -5,11 +5,14 @@ import PageHeader from '../../components/PageHeader';
 import Input from '../../components/Input';
 import Textarea from '../../components/Textarea';
 import Select from '../../components/Select';
+import TextMaskedInput from '../../components/TextMaskedInput';
 
 import warningIcon from '../../assets/images/icons/warning.svg';
 import cameraIcon from '../../assets/images/icons/camera.svg';
 
 import api from '../../services/api';
+
+import { currencyMask, phoneMask } from '../../utils/Masks';
 
 import {
   Container,
@@ -139,24 +142,16 @@ function Profile() {
                 }}
               />
 
-              <Input
-                name="avatar"
+              <TextMaskedInput
+                name="whatsapp"
                 label="Whatsapp"
-                value={avatar}
+                value={whatsapp}
                 onChange={(e) => {
-                  setAvatar(e.target.value);
+                  setWhatsapp(e.target.value);
                 }}
+                mask={phoneMask}
               />
             </InputContactContainer>
-
-            <Input
-              name="whatsapp"
-              label="WhatsApp"
-              value={whatsapp}
-              onChange={(e) => {
-                setWhatsapp(e.target.value);
-              }}
-            />
 
             <Textarea
               name="bio"
@@ -193,13 +188,14 @@ function Profile() {
                 ]}
               />
 
-              <Input
+              <TextMaskedInput
                 name="cost"
                 label="Custo da sua hora por aula"
                 value={cost}
                 onChange={(e) => {
                   setCost(e.target.value);
                 }}
+                mask={currencyMask}
               />
             </InputContactContainer>
           </fieldset>
