@@ -9,11 +9,18 @@ interface SelectProps extends SelectHTMLAttributes<HTMLSelectElement> {
     value: string;
     label: string;
   }>;
+  customClass?: string;
 }
 
-const Select: React.FC<SelectProps> = ({ label, name, options, ...rest }) => {
+const Select: React.FC<SelectProps> = ({
+  label,
+  name,
+  options,
+  customClass,
+  ...rest
+}) => {
   return (
-    <Container className="select-block">
+    <Container className={`select-block ${customClass ? customClass : ''}`}>
       <label htmlFor={name}>{label}</label>
       <select value="" id={name} {...rest}>
         <option value="" disabled hidden>

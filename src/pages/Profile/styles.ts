@@ -11,13 +11,21 @@ export const Container = styled.div`
   }
 
   main {
-    background: var(--color-box-base);
-    width: 100%;
-    max-width: 74rem;
-    border-radius: 0.8rem;
-    margin: -6.4rem auto 3.2rem;
-    padding-top: 6.4rem;
-    overflow: hidden;
+    form {
+      background: var(--color-box-base);
+      width: 100%;
+      max-width: 74rem;
+      border-radius: 0.8rem;
+      margin: -6.4rem auto 3.2rem;
+      padding-top: 6.4rem;
+      overflow: hidden;
+
+      @media (max-width: 700px) {
+        margin: -1.6rem 1.6rem 2.3rem 1.6rem;
+        max-width: 100%;
+        width: fit-content;
+      }
+    }
 
     fieldset {
       border: 0;
@@ -124,6 +132,27 @@ export const Container = styled.div`
 export const ScheduleContainer = styled.div``;
 
 export const ScheduleItem = styled.div`
+  display: grid;
+  grid-template-rows: 1fr 1fr;
+  grid-template-columns: 1fr 1fr;
+  grid-row-gap: 1.6rem;
+  grid-template-areas:
+    'week week'
+    'from to';
+
+  @media (max-width: 700px) {
+    .week-day-input {
+      grid-area: week;
+    }
+
+    .input-block {
+      &:last-child {
+        margin-top: 0;
+        margin-left: 1.6rem;
+      }
+    }
+  }
+
   @media (min-width: 700px) {
     display: grid;
     grid-template-columns: 2fr 1fr 1fr;
@@ -225,13 +254,19 @@ export const InputNameContainer = styled.div`
   display: flex;
   margin-bottom: 2.4rem;
 
-  .input-block {
-    &:first-child {
-      margin-right: 3.2rem;
-    }
+  @media (max-width: 700px) {
+    flex-direction: column;
+  }
 
-    &:last-child {
-      margin-top: 0;
+  @media (min-width: 700px) {
+    .input-block {
+      &:first-child {
+        margin-right: 3.2rem;
+      }
+
+      &:last-child {
+        margin-top: 0;
+      }
     }
   }
 `;
@@ -241,15 +276,25 @@ export const InputContactContainer = styled.div`
   grid-template-columns: 65% 35%;
   margin-bottom: 2.4rem;
 
-  .select-block {
-    &:first-child {
-      margin-right: 3.2rem;
+  @media (max-width: 700px) {
+    grid-template-columns: none;
+    grid-template-rows: repeat(2, 1fr);
+    grid-row-gap: 2.4rem;
+  }
+
+  @media (min-width: 700px) {
+    .select-block {
+      &:first-child {
+        margin-right: 3.2rem;
+      }
     }
   }
 
   .input-block {
-    &:first-child {
-      margin-right: 3.2rem;
+    @media (min-width: 700px) {
+      &:first-child {
+        margin-right: 3.2rem;
+      }
     }
 
     &:last-child {

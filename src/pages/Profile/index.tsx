@@ -204,7 +204,7 @@ function Profile() {
             <legend>
               Horários disponíveis
               <button type="button" onClick={handleAddNewScheduleItem}>
-                + Novo Horário
+                + Novo
               </button>
             </legend>
 
@@ -228,6 +228,7 @@ function Profile() {
                         { value: '5', label: 'Sexta-feira' },
                         { value: '6', label: 'Sábado' },
                       ]}
+                      customClass="week-day-input"
                     />
 
                     <Input
@@ -265,7 +266,7 @@ function Profile() {
             <p>
               <img src={warningIcon} alt="Aviso importante" />
               Importante! <br />
-              Preencha todos os dados
+              Preencha todos os dados corretamente
             </p>
             <button type="submit">Salvar cadastro</button>
           </footer>
