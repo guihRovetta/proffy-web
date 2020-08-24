@@ -5,13 +5,21 @@ import PageHeader from '../../components/PageHeader';
 import Input from '../../components/Input';
 import Textarea from '../../components/Textarea';
 import Select from '../../components/Select';
+import TextMaskedInput from '../../components/TextMaskedInput';
 
 import warningIcon from '../../assets/images/icons/warning.svg';
 import rocketIcon from '../../assets/images/icons/rocket.svg';
 
 import api from '../../services/api';
 
-import { Container, ScheduleItem } from './styles';
+import { currencyMask, phoneMask } from '../../utils/Masks';
+
+import {
+  Container,
+  TopFormInputContainer,
+  ScheduleItem,
+  InputContactContainer,
+} from './styles';
 
 function TeacherForm() {
   const [name, setName] = useState('');
@@ -92,36 +100,29 @@ function TeacherForm() {
           <fieldset>
             <legend>Seus dados</legend>
 
-            <Input
-              name="name"
-              label="Nome completo"
-              value={name}
-              onChange={(e) => {
-                setName(e.target.value);
-              }}
-            />
+            <TopFormInputContainer>
+              <div>
+                <img
+                  src="https://github.com/guihRovetta.png"
+                  alt="Imagem de perfil"
+                />
+                <span>Guilherme Rovetta</span>
+              </div>
 
-            <Input
-              name="avatar"
-              label="Avatar"
-              value={avatar}
-              onChange={(e) => {
-                setAvatar(e.target.value);
-              }}
-            />
-
-            <Input
-              name="whatsapp"
-              label="WhatsApp"
-              value={whatsapp}
-              onChange={(e) => {
-                setWhatsapp(e.target.value);
-              }}
-            />
+              <TextMaskedInput
+                name="whatsapp"
+                label="Whatsapp"
+                value={whatsapp}
+                onChange={(e) => {
+                  setWhatsapp(e.target.value);
+                }}
+                mask={phoneMask}
+              />
+            </TopFormInputContainer>
 
             <Textarea
               name="bio"
-              label="Biografia"
+              label="Biografia (máximo de 300 caracteres)"
               value={bio}
               onChange={(e) => {
                 setBio(e.target.value);
@@ -132,35 +133,37 @@ function TeacherForm() {
           <fieldset>
             <legend>Sobre a aula</legend>
 
-            <Select
-              name="subject"
-              label="Matéria"
-              value={subject}
-              onChange={(e) => {
-                setSubject(e.target.value);
-              }}
-              options={[
-                { value: 'Artes', label: 'Artes' },
-                { value: 'Biologia', label: 'Biologia' },
-                { value: 'Ciências', label: 'Ciências' },
-                { value: 'Educação Física', label: 'Educação Física' },
-                { value: 'Física', label: 'Física' },
-                { value: 'Geografia', label: 'Geografia' },
-                { value: 'História', label: 'História' },
-                { value: 'Matemática', label: 'Matemática' },
-                { value: 'Português', label: 'Português' },
-                { value: 'Química', label: 'Química' },
-              ]}
-            />
+            <InputContactContainer>
+              <Select
+                name="subject"
+                label="Matéria"
+                value={subject}
+                onChange={(e) => {
+                  setSubject(e.target.value);
+                }}
+                options={[
+                  { value: 'Artes', label: 'Artes' },
+                  { value: 'Biologia', label: 'Biologia' },
+                  { value: 'Ciências', label: 'Ciências' },
+                  { value: 'Educação Física', label: 'Educação Física' },
+                  { value: 'Física', label: 'Física' },
+                  { value: 'Geografia', label: 'Geografia' },
+                  { value: 'História', label: 'História' },
+                  { value: 'Matemática', label: 'Matemática' },
+                  { value: 'Português', label: 'Português' },
+                  { value: 'Química', label: 'Química' },
+                ]}
+              />
 
-            <Input
-              name="cost"
-              label="Custo da sua hora por aula"
-              value={cost}
-              onChange={(e) => {
-                setCost(e.target.value);
-              }}
-            />
+              <Input
+                name="cost"
+                label="Custo da sua hora por aula"
+                value={cost}
+                onChange={(e) => {
+                  setCost(e.target.value);
+                }}
+              />
+            </InputContactContainer>
           </fieldset>
 
           <fieldset>
@@ -190,6 +193,7 @@ function TeacherForm() {
                       { value: '5', label: 'Sexta-feira' },
                       { value: '6', label: 'Sábado' },
                     ]}
+                    customClass="week-day-input"
                   />
 
                   <Input

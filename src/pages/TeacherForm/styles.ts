@@ -17,6 +17,10 @@ export const Container = styled.div`
     padding-top: 6.4rem;
     overflow: hidden;
 
+    @media (max-width: 700px) {
+      margin: -1.4rem auto 3.2rem;
+    }
+
     fieldset {
       border: 0;
       padding: 0 2.4rem;
@@ -54,8 +58,7 @@ export const Container = styled.div`
         }
       }
 
-      .input-block + .textarea-block,
-      .select-block + .input-block {
+      .input-block + .textarea-block {
         margin-top: 2.4rem;
       }
     }
@@ -120,7 +123,57 @@ export const Container = styled.div`
   }
 `;
 
+export const TopFormInputContainer = styled.div`
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 2.4rem;
+
+  div {
+    &:first-child {
+      display: flex;
+      align-items: center;
+
+      img {
+        width: 8rem;
+        height: 8rem;
+        border-radius: 50%;
+        margin-right: 2.4rem;
+      }
+
+      span {
+        color: var(--color-text-title);
+        font: 700 2rem Archivo;
+      }
+    }
+
+    &:last-child {
+      max-width: 224px;
+    }
+  }
+`;
+
 export const ScheduleItem = styled.div`
+  display: grid;
+  grid-template-rows: 1fr 1fr;
+  grid-template-columns: 1fr 1fr;
+  grid-row-gap: 1.6rem;
+  grid-template-areas:
+    'week week'
+    'from to';
+
+  @media (max-width: 700px) {
+    .week-day-input {
+      grid-area: week;
+    }
+
+    .input-block {
+      &:last-child {
+        margin-top: 0;
+        margin-left: 1.6rem;
+      }
+    }
+  }
+
   @media (min-width: 700px) {
     display: grid;
     grid-template-columns: 2fr 1fr 1fr;
@@ -128,6 +181,38 @@ export const ScheduleItem = styled.div`
 
     .input-block {
       margin-top: 0 !important;
+    }
+  }
+`;
+
+export const InputContactContainer = styled.div`
+  display: grid;
+  grid-template-columns: 65% 35%;
+  margin-bottom: 2.4rem;
+
+  @media (max-width: 700px) {
+    grid-template-columns: none;
+    grid-template-rows: repeat(2, 1fr);
+    grid-row-gap: 2.4rem;
+  }
+
+  @media (min-width: 700px) {
+    .select-block {
+      &:first-child {
+        margin-right: 3.2rem;
+      }
+    }
+  }
+
+  .input-block {
+    @media (min-width: 700px) {
+      &:first-child {
+        margin-right: 3.2rem;
+      }
+    }
+
+    &:last-child {
+      margin-top: 0;
     }
   }
 `;
