@@ -155,13 +155,14 @@ function TeacherForm() {
                 ]}
               />
 
-              <Input
+              <TextMaskedInput
                 name="cost"
                 label="Custo da sua hora por aula"
                 value={cost}
                 onChange={(e) => {
                   setCost(e.target.value);
                 }}
+                mask={currencyMask}
               />
             </InputContactContainer>
           </fieldset>

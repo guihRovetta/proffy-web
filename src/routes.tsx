@@ -1,5 +1,7 @@
-import React from 'react';
-import { BrowserRouter, Route } from 'react-router-dom';
+import React, { useContext } from 'react';
+import { Switch, Route, Redirect, RouteComponentProps } from 'react-router-dom';
+
+import { Context } from './context/AuthContext';
 
 import Landing from './pages/Landing';
 import TeacherList from './pages/TeacherList';
@@ -9,17 +11,40 @@ import Register from './pages/Register';
 import Forgot from './pages/Forgot';
 import Profile from './pages/Profile';
 
+interface CustomRouteProps {
+  isPrivate?: boolean;
+  path?: string | string[];
+  exact?: boolean;
+  component?:
+    | React.ComponentType<RouteComponentProps<any>>
+    | React.ComponentType<any>;
+}
+
+function CustomRoute({ isPrivate, ...rest }: CustomRouteProps) {
+  const { loading, authenticated } = useContext(Context);
+
+  if (loading) {
+    return <h1>Loading...</h1>;
+  }
+
+  if (isPrivate && !authenticated) {
+    return <Redirect to="/login" />;
+  }
+
+  return <Route {...rest} />;
+}
+
 function Routes() {
   return (
-    <BrowserRouter>
-      <Route path="/" exact component={Landing} />
-      <Route path="/login" component={Login} />
-      <Route path="/register" component={Register} />
-      <Route path="/forgot" component={Forgot} />
-      <Route path="/study" component={TeacherList} />
-      <Route path="/give-classes" component={TeacherForm} />
-      <Route path="/profile" component={Profile} />
-    </BrowserRouter>
+    <Switch>
+      <CustomRoute isPrivate path="/" exact component={Landing} />
+      <CustomRoute path="/login" component={Login} />
+      <CustomRoute path="/register" component={Register} />
+      <CustomRoute path="/forgot" component={Forgot} />
+      <CustomRoute isPrivate path="/study" component={TeacherList} />
+      <CustomRoute isPrivate path="/give-classes" component={TeacherForm} />
+      <CustomRoute isPrivate path="/profile" component={Profile} />
+    </Switch>
   );
 }
 
