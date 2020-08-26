@@ -59,6 +59,10 @@ export const PasswordContainer = styled.div`
   }
 `;
 
+export const ErrorMessage = styled.span`
+  color: var(--color-danger);
+`;
+
 export const FooterWrapper = styled.div`
   padding-top: 12.8rem;
   display: flex;

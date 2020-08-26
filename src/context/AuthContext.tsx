@@ -3,6 +3,7 @@ import React, { createContext, ReactNode } from 'react';
 import useAuth from '../hooks/useAuth';
 
 interface ContextProps {
+  errorMessage: string;
   loading: boolean;
   authenticated: boolean;
   handleLogin(email: string, password: string): void;
@@ -16,11 +17,23 @@ interface AuthProviderProps {
 const Context = createContext<ContextProps>({} as ContextProps);
 
 function AuthProvider({ children }: AuthProviderProps) {
-  const { authenticated, loading, handleLogin, handleLogout } = useAuth();
+  const {
+    errorMessage,
+    loading,
+    authenticated,
+    handleLogin,
+    handleLogout,
+  } = useAuth();
 
   return (
     <Context.Provider
-      value={{ loading, authenticated, handleLogin, handleLogout }}
+      value={{
+        errorMessage,
+        loading,
+        authenticated,
+        handleLogin,
+        handleLogout,
+      }}
     >
       {children}
     </Context.Provider>

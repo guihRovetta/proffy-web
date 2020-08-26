@@ -6,6 +6,7 @@ import history from '../config/history';
 export default function useAuth() {
   const [authenticated, setAuthenticated] = useState(false);
   const [loading, setLoading] = useState(true);
+  const [errorMessage, setErrorMessage] = useState('');
 
   useEffect(() => {
     const token = localStorage.getItem('token');
@@ -31,8 +32,11 @@ export default function useAuth() {
       api.defaults.headers.Authorization = `Bearer ${token}`;
       setAuthenticated(true);
       history.push('/');
-    } catch (err) {
-      console.log('aqui', err);
+    } catch ({ response }) {
+      const {
+        data: { message },
+      } = response;
+      setErrorMessage(message);
     }
   }
 
@@ -43,5 +47,5 @@ export default function useAuth() {
     history.push('/login');
   }
 
-  return { authenticated, loading, handleLogin, handleLogout };
+  return { errorMessage, loading, authenticated, handleLogin, handleLogout };
 }

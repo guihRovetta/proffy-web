@@ -19,11 +19,12 @@ import {
   FormContainer,
   Form,
   PasswordContainer,
+  ErrorMessage,
   FooterWrapper,
 } from './styles';
 
 const Login: React.FC = () => {
-  const { handleLogin } = useContext(Context);
+  const { handleLogin, errorMessage } = useContext(Context);
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -79,6 +80,7 @@ const Login: React.FC = () => {
             <Button disabled={!formValid} onClick={handleClickLogin}>
               Entrar
             </Button>
+            {errorMessage && <ErrorMessage>{errorMessage}</ErrorMessage>}
           </Form>
 
           <FooterWrapper>
