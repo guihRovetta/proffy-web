@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { Link } from 'react-router-dom';
 
 import api from '../../services/api';
+import { Context } from '../../context/AuthContext';
 
 import logoImg from '../../assets/images/logo.svg';
 import landingImg from '../../assets/images/landing.svg';
@@ -27,6 +28,7 @@ import {
 
 function Landing() {
   const [totalConnections, setTotalConnections] = useState(0);
+  const { handleLogout } = useContext(Context);
 
   useEffect(() => {
     api.get('connections').then((response) => {
@@ -49,7 +51,7 @@ function Landing() {
               <span>Guilherme Rovetta</span>
             </div>
 
-            <button>
+            <button onClick={handleLogout}>
               <img src={logoffIcon} alt="Sair" />
             </button>
           </ProfileContainer>

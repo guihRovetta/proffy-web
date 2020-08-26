@@ -1,5 +1,9 @@
-import React, { FormEvent } from 'react';
-import { Link, useHistory } from 'react-router-dom';
+import React, { FormEvent, useEffect, useState, useContext } from 'react';
+import { Link } from 'react-router-dom';
+
+import * as yup from 'yup';
+
+import { Context } from '../../context/AuthContext';
 
 import LogoContainer from '../../components/LogoContainer';
 import FormField from '../../components/FormField';
@@ -19,13 +23,27 @@ import {
 } from './styles';
 
 const Login: React.FC = () => {
-  const history = useHistory();
+  const { handleLogin } = useContext(Context);
 
-  function handleLogin(e: FormEvent) {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [formValid, setFormValid] = useState(false);
+
+  let schema = yup.object().shape({
+    email: yup.string().email().trim().required(),
+    password: yup.string().trim().required(),
+  });
+
+  useEffect(() => {
+    schema
+      .isValid({ email, password })
+      .then((isValid) => setFormValid(isValid));
+  }, [schema, email, password]);
+
+  async function handleClickLogin(e: FormEvent) {
     e.preventDefault();
 
-    history.push('/');
-    console.log('Logando....');
+    handleLogin(email, password);
   }
 
   return (
@@ -34,23 +52,33 @@ const Login: React.FC = () => {
 
       <FormWrapper>
         <FormContainer>
-          <Form onSubmit={handleLogin}>
+          <Form>
             <h1>Fazer login</h1>
             <FormField
               name="email"
               label="E-mail"
+              value={email}
+              onChange={(e) => {
+                setEmail(e.target.value);
+              }}
               borderRadius="top"
             ></FormField>
             <FormFieldPassword
               name="password"
               label="Senha"
+              value={password}
+              onChange={(e) => {
+                setPassword(e.target.value);
+              }}
               borderRadius="bottom"
             ></FormFieldPassword>
             <PasswordContainer>
               <CheckBox name="remember" label="Lembrar-me"></CheckBox>
               <Link to="/forgot">Esqueci minha senha</Link>
             </PasswordContainer>
-            <Button>Entrar</Button>
+            <Button disabled={!formValid} onClick={handleClickLogin}>
+              Entrar
+            </Button>
           </Form>
 
           <FooterWrapper>

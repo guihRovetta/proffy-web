@@ -100,7 +100,12 @@ export const ProfileContainer = styled.div`
     border-radius: 0.8rem;
     outline: 0;
     border: none;
+    cursor: pointer;
     background: var(--color-primary-dark);
+
+    &:hover {
+      opacity: 0.8;
+    }
   }
 `;
 

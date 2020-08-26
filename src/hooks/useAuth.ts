@@ -19,17 +19,21 @@ export default function useAuth() {
   }, []);
 
   async function handleLogin(email: string, password: string) {
-    const {
-      data: { token },
-    } = await api.post('/auth', {
-      email,
-      password,
-    });
+    try {
+      const {
+        data: { token },
+      } = await api.post('/auth', {
+        email,
+        password,
+      });
 
-    localStorage.setItem('token', JSON.stringify(token));
-    api.defaults.headers.Authorization = `Bearer ${token}`;
-    setAuthenticated(true);
-    history.push('/');
+      localStorage.setItem('token', JSON.stringify(token));
+      api.defaults.headers.Authorization = `Bearer ${token}`;
+      setAuthenticated(true);
+      history.push('/');
+    } catch (err) {
+      console.log('aqui', err);
+    }
   }
 
   function handleLogout() {
