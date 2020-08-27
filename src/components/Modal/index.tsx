@@ -1,20 +1,24 @@
 import React from 'react';
 
-import logoImg from '../../assets/images/icons/success-check-icon.svg';
-
 import { Container, BackgroundWrapper, LogoContent } from './styles';
 
 interface ModalProps {
   title: string;
   message: string;
+  statusIcon: string;
 }
 
-const Modal: React.FC<ModalProps> = ({ title, message, children }) => {
+const Modal: React.FC<ModalProps> = ({
+  title,
+  message,
+  statusIcon,
+  children,
+}) => {
   return (
     <Container>
       <BackgroundWrapper>
         <LogoContent>
-          <img src={logoImg} alt="Proffy" />
+          <img src={statusIcon} alt="Proffy" />
           <h1>{title}</h1>
           <p>{message}</p>
           {children}

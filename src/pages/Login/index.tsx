@@ -53,7 +53,7 @@ const Login: React.FC = () => {
 
       <FormWrapper>
         <FormContainer>
-          <Form>
+          <Form onSubmit={handleClickLogin}>
             <h1>Fazer login</h1>
             <FormField
               name="email"
@@ -77,9 +77,7 @@ const Login: React.FC = () => {
               <CheckBox name="remember" label="Lembrar-me"></CheckBox>
               <Link to="/forgot">Esqueci minha senha</Link>
             </PasswordContainer>
-            <Button disabled={!formValid} onClick={handleClickLogin}>
-              Entrar
-            </Button>
+            <Button disabled={!formValid}>Entrar</Button>
             {errorMessage && <ErrorMessage>{errorMessage}</ErrorMessage>}
           </Form>
 

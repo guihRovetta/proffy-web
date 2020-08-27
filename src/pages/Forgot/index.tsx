@@ -50,6 +50,7 @@ const Forgot: React.FC = () => {
           title="Redefinição enviada!"
           message="Boa, agora é só checar o e-mail que foi enviado para você redefinir
             sua senha e aproveitar os estudos."
+          statusIcon="7458"
         >
           <Button onClick={handleBackToLogin}>Voltar ao login</Button>
         </Modal>
