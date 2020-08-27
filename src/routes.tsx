@@ -10,6 +10,7 @@ import Login from './pages/Login';
 import Register from './pages/Register';
 import Forgot from './pages/Forgot';
 import Profile from './pages/Profile';
+import NotFound from './pages/NotFound';
 
 interface CustomRouteProps {
   isPrivate?: boolean;
@@ -44,6 +45,7 @@ function Routes() {
       <CustomRoute isPrivate path="/study" component={TeacherList} />
       <CustomRoute isPrivate path="/give-classes" component={TeacherForm} />
       <CustomRoute isPrivate path="/profile" component={Profile} />
+      <CustomRoute component={NotFound} />
     </Switch>
   );
 }

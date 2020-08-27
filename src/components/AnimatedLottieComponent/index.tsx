@@ -3,8 +3,8 @@ import Lottie from 'react-lottie';
 
 interface AnimatedLottieComponentProps {
   animationData: any;
-  height: number;
-  width: number;
+  height?: number;
+  width?: number;
 }
 
 const AnimatedLottieComponent: React.FC<AnimatedLottieComponentProps> = ({
