@@ -71,13 +71,13 @@ Lembrando que para poder salvar e acessar os dados do servidor, o projeto do bac
 
 - [ ] Adição de página 404
 - [ ] Novo layout de algumas páginas
-- [ ] Autenticação de usuários
-- [ ] Recuperação de senhas
+- [x] Autenticação de usuários
+- [x] Recuperação de senhas
 - [ ] Exibição e edição de perfil do professor
 - [ ] Paginação na listagem de professores
 - [ ] Exibição de horários disponíveis dos professores (novo layout)
 - [ ] Salvar professores favoritos
-- [ ] Logout da aplicação
+- [x] Logout da aplicação
 - [ ] Deploy da aplicação
 
 ---

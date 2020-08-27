@@ -52,6 +52,13 @@ export const Form = styled.form`
 
   button {
     margin-top: 2.4rem;
+    display: flex;
+    justify-content: center;
+
+    > div {
+      margin: 0 !important;
+      padding-left: 0.8rem;
+    }
   }
 
   @media (max-width: 950px) {

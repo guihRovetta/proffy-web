@@ -7,12 +7,15 @@ import LogoContainer from '../../components/LogoContainer';
 import FormField from '../../components/FormField';
 import Button from '../../components/Button';
 import Modal from '../../components/Modal';
+import AnimatedLottieComponent from '../../components/AnimatedLottieComponent';
 
 import api from '../../services/api';
 
 import backIcon from '../../assets/images/icons/back.svg';
 import successIcon from '../../assets/images/icons/success-check-icon.svg';
 import warningIcon from '../../assets/images/icons/warning-error.svg';
+
+import sendingEmailAnimation from '../../assets/animations/sending-email.json';
 
 import {
   Container,
@@ -41,6 +44,7 @@ const Forgot: React.FC = () => {
     link: '',
   });
 
+  const [loading, setLoading] = useState(false);
   const [email, setEmail] = useState('');
   const [formValid, setFormValid] = useState(false);
 
@@ -54,15 +58,19 @@ const Forgot: React.FC = () => {
 
   function handleForgot(e: FormEvent) {
     e.preventDefault();
+    setLoading(true);
 
     api
       .post('forgot', {
         email,
       })
       .then((success) => {
+        setLoading(false);
+
         const {
           data: { message },
         } = success;
+
         handleResponse(
           'Redefinição realizada!',
           'Clique no link (Ver email) para acessar sua senha provisória',
@@ -72,6 +80,8 @@ const Forgot: React.FC = () => {
         );
       })
       .catch((error) => {
+        setLoading(false);
+
         const {
           data: { message },
         } = error.response;
@@ -121,7 +131,20 @@ const Forgot: React.FC = () => {
                 }}
               ></FormField>
 
-              <Button disabled={!formValid}>Enviar</Button>
+              <Button disabled={!formValid}>
+                {!loading ? (
+                  'Enviar'
+                ) : (
+                  <>
+                    Enviando...
+                    <AnimatedLottieComponent
+                      animationData={sendingEmailAnimation}
+                      height={56}
+                      width={56}
+                    />
+                  </>
+                )}
+              </Button>
             </Form>
           </FormContainer>
         </FormWrapper>
