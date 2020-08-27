@@ -4,8 +4,8 @@ import { Container, BackgroundWrapper, LogoContent } from './styles';
 
 interface ModalProps {
   title: string;
-  message: string;
-  statusIcon: string;
+  message?: string;
+  statusIcon?: string;
 }
 
 const Modal: React.FC<ModalProps> = ({

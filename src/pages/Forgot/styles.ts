@@ -58,3 +58,24 @@ export const Form = styled.form`
     padding-top: 4.9rem;
   }
 `;
+
+export const AltButton = styled.a`
+  text-decoration: none;
+  margin-top: 1.6rem;
+  color: var(--color-text-in-primary);
+  font-size: 1.4rem;
+  width: 100%;
+  height: 5.6rem;
+  max-width: 18.8rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0.8rem;
+  border: 1px solid var(--color-text-in-primary);
+  transition: 0.2s;
+
+  &:hover {
+    background: var(--color-text-in-primary);
+    color: var(--color-primary);
+  }
+`;

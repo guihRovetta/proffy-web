@@ -98,6 +98,7 @@ const Register: React.FC = () => {
             <Form onSubmit={handleRegister}>
               <h1>Cadastro</h1>
               <p>Preencha os dados abaixo para começar</p>
+
               <FormField
                 name="name"
                 label="Nome"
@@ -107,6 +108,7 @@ const Register: React.FC = () => {
                 }}
                 borderRadius="top"
               ></FormField>
+
               <FormField
                 name="lastname"
                 label="Sobrenome"
@@ -115,6 +117,7 @@ const Register: React.FC = () => {
                   setLastname(e.target.value);
                 }}
               ></FormField>
+
               <FormField
                 name="email"
                 label="E-mail"
@@ -123,6 +126,7 @@ const Register: React.FC = () => {
                   setEmail(e.target.value);
                 }}
               ></FormField>
+
               <FormFieldPassword
                 name="password"
                 label="Senha"
@@ -132,6 +136,7 @@ const Register: React.FC = () => {
                 }}
                 borderRadius="bottom"
               ></FormFieldPassword>
+
               <Button disabled={!formValid}>Concluir cadastro</Button>
             </Form>
           </FormContainer>
