@@ -39,7 +39,6 @@ Já em Estudar, o aluno deve escolher em um filtro, qual a matéria a ser aprend
 - Navegação de rotas com react-router-dom
 - Realização de chamadas na API com a lib axios
 
-
 ## 🚀 Tecnologias:
 
 - React
@@ -69,7 +68,7 @@ Lembrando que para poder salvar e acessar os dados do servidor, o projeto do bac
 
 ## :new: Novas funcionalidades:
 
-- [ ] Adição de página 404
+- [x] Adição de página 404
 - [ ] Novo layout de algumas páginas
 - [x] Autenticação de usuários
 - [x] Recuperação de senhas

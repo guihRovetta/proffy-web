@@ -87,6 +87,7 @@ export const ProfileContainer = styled.div`
       height: 4rem;
       border-radius: 50%;
       margin-right: 1.6rem;
+      object-fit: cover;
     }
 
     span {

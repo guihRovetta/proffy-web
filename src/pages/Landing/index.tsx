@@ -6,6 +6,7 @@ import { Context } from '../../context/AuthContext';
 
 import logoImg from '../../assets/images/logo.svg';
 import landingImg from '../../assets/images/landing.svg';
+import defaultProfileImg from '../../assets/images/default-profile.jpeg';
 
 import studyIcon from '../../assets/images/icons/study.svg';
 import giveClassesIcon from '../../assets/images/icons/give-classes.svg';
@@ -28,15 +29,33 @@ import {
 
 function Landing() {
   const [totalConnections, setTotalConnections] = useState(0);
+  const [name, setName] = useState('');
+  const [lastname, setLastname] = useState('');
+  const [avatar, setAvatar] = useState('');
   const { handleLogout } = useContext(Context);
 
   useEffect(() => {
+    getConnections();
+    getUserBasicData();
+  }, []);
+
+  function getConnections() {
     api.get('connections').then((response) => {
       const { total } = response.data;
 
       setTotalConnections(total);
     });
-  }, []);
+  }
+
+  function getUserBasicData() {
+    api.get('users').then((response) => {
+      const { name, lastname, avatar } = response.data.user;
+
+      setName(name);
+      setLastname(lastname);
+      setAvatar(avatar);
+    });
+  }
 
   return (
     <Container>
@@ -45,10 +64,10 @@ function Landing() {
           <ProfileContainer>
             <div>
               <img
-                src="https://avatars2.githubusercontent.com/u/9082472?s=460&u=766fef82d4a85fb1555aad72ebfb827a4f1f3b22&v=4"
-                alt="Meu Perfil"
+                src={avatar ? avatar : defaultProfileImg}
+                alt={`${name} ${lastname}`}
               />
-              <span>Guilherme Rovetta</span>
+              <span>{`${name} ${lastname}`}</span>
             </div>
 
             <button onClick={handleLogout}>
