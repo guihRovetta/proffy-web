@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 
 import api from '../../services/api';
 import { Context } from '../../context/AuthContext';
@@ -28,10 +28,13 @@ import {
 } from './styles';
 
 function Landing() {
+  const history = useHistory();
+
   const [totalConnections, setTotalConnections] = useState(0);
   const [name, setName] = useState('');
   const [lastname, setLastname] = useState('');
   const [avatar, setAvatar] = useState('');
+
   const { handleLogout } = useContext(Context);
 
   useEffect(() => {
@@ -57,6 +60,10 @@ function Landing() {
     });
   }
 
+  function handleGoToProfile() {
+    history.push('/profile');
+  }
+
   return (
     <Container>
       <TopContent>
@@ -66,6 +73,7 @@ function Landing() {
               <img
                 src={avatar ? avatar : defaultProfileImg}
                 alt={`${name} ${lastname}`}
+                onClick={handleGoToProfile}
               />
               <span>{`${name} ${lastname}`}</span>
             </div>

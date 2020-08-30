@@ -156,6 +156,7 @@ export const ScheduleItem = styled.div`
   @media (min-width: 700px) {
     display: grid;
     grid-template-columns: 2fr 1fr 1fr;
+    grid-template-rows: none;
     column-gap: 1.6rem;
 
     .input-block {
@@ -219,6 +220,7 @@ export const ProfileImageContainer = styled.div`
 export const ProfileImage = styled.img`
   max-width: 18rem;
   max-height: 18rem;
+  height: 100%;
   border-radius: 50%;
 `;
 

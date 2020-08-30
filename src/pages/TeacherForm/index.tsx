@@ -38,7 +38,7 @@ function TeacherForm() {
 
   function handleAddNewScheduleItem() {
     const scheduleItem = {
-      week_day: 5,
+      week_day: 0,
       from: '',
       to: '',
     };

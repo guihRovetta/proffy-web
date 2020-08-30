@@ -88,6 +88,11 @@ export const ProfileContainer = styled.div`
       border-radius: 50%;
       margin-right: 1.6rem;
       object-fit: cover;
+      cursor: pointer;
+
+      &:hover {
+        opacity: 0.8;
+      }
     }
 
     span {
