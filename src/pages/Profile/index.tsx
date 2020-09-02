@@ -10,6 +10,7 @@ import Select from '../../components/Select';
 import TextMaskedInput from '../../components/TextMaskedInput';
 import Button from '../../components/Button';
 import Modal from '../../components/Modal';
+import ScheduleItemSection from '../../components/ScheduleItemSection';
 
 import defaultProfileImg from '../../assets/images/default-profile.jpeg';
 
@@ -24,9 +25,6 @@ import convertMinutesToHour from '../../utils/ConvertMinutesToHours';
 
 import {
   Container,
-  ScheduleContainer,
-  ScheduleItem,
-  ScheduleButtonContainer,
   ProfileCover,
   ProfileImageContainer,
   ProfileImage,
@@ -66,7 +64,7 @@ function Profile() {
   });
 
   let schema = yup.object().shape({
-    avatar: yup.string().trim().required(),
+    avatar: yup.string().trim(),
     name: yup.string().required(),
     lastname: yup.string().required(),
     email: yup.string().email().trim().required(),
@@ -90,10 +88,9 @@ function Profile() {
   }, []);
 
   useEffect(() => {
-    debugger;
     schema
       .isValid({
-        avatar,
+        // avatar,
         name,
         lastname,
         email,
@@ -106,7 +103,7 @@ function Profile() {
       .then((isValid) => setFormValid(isValid));
   }, [
     schema,
-    avatar,
+    // avatar,
     name,
     lastname,
     email,
@@ -117,46 +114,11 @@ function Profile() {
     scheduleItems,
   ]);
 
-  function setScheduleItemValue(
-    position: Number,
-    field: string,
-    value: string
-  ) {
-    debugger;
-    const updatedScheduleItems = scheduleItems.map((scheduleItem, index) => {
-      if (index === position) {
-        return { ...scheduleItem, [field]: value };
-      }
-
-      return scheduleItem;
-    });
-
-    setScheduleItems(updatedScheduleItems);
-  }
-
-  function handleAddNewScheduleItem() {
-    const scheduleItem = {
-      id: 0,
-      week_day: 5,
-      from: '',
-      to: '',
-    };
-
-    setScheduleItems([...scheduleItems, scheduleItem]);
-  }
-
-  function handleRemoveScheduleItem(e: FormEvent, id: number) {
-    e.preventDefault();
-
-    const updatedScheduleItems = scheduleItems.filter((item) => {
-      return item.id !== id;
-    });
-
-    setScheduleItems(updatedScheduleItems);
-  }
-
   function handleUpdateUserClass(e: FormEvent) {
     e.preventDefault();
+    debugger;
+
+    const extractedCost = cost.replace('R$', '').replace(',', '.');
 
     api
       .put('classes', {
@@ -167,7 +129,7 @@ function Profile() {
         whatsapp,
         bio,
         subject,
-        cost: Number(cost),
+        cost: Number(extractedCost),
         schedule: scheduleItems,
       })
       .then(() => {
@@ -217,15 +179,17 @@ function Profile() {
       setLastname(lastname);
       setEmail(email);
       setWhatsapp(whatsapp);
-      setBio(bio);
+      setBio(bio || '');
 
-      const {
-        class: { subject, cost, id },
-      } = response.data;
+      const userClass = response.data.class;
 
-      setSubject(subject);
-      setCost(cost);
-      getScheduleClassData(id);
+      if (userClass) {
+        const { subject, cost, id } = userClass;
+
+        setSubject(subject);
+        setCost(cost);
+        getScheduleClassData(id);
+      }
     });
   }
 
@@ -356,77 +320,12 @@ function Profile() {
                 </InputContactContainer>
               </fieldset>
 
-              <fieldset>
-                <legend>
-                  Horários disponíveis
-                  <button type="button" onClick={handleAddNewScheduleItem}>
-                    + Novo
-                  </button>
-                </legend>
-
-                {scheduleItems.map((scheduleItem, index) => {
-                  return (
-                    <ScheduleContainer key={index}>
-                      <ScheduleItem>
-                        <Select
-                          name="week_day"
-                          label="Dia da semana"
-                          value={scheduleItem.week_day}
-                          onChange={(e) =>
-                            setScheduleItemValue(
-                              index,
-                              'week_day',
-                              e.target.value
-                            )
-                          }
-                          options={[
-                            { value: '0', label: 'Domingo' },
-                            { value: '1', label: 'Segunda-feira' },
-                            { value: '2', label: 'Terça-feira' },
-                            { value: '3', label: 'Quarta-feira' },
-                            { value: '4', label: 'Quinta-feira' },
-                            { value: '5', label: 'Sexta-feira' },
-                            { value: '6', label: 'Sábado' },
-                          ]}
-                          customClass="week-day-input"
-                        />
-
-                        <Input
-                          name="from"
-                          label="Das"
-                          type="time"
-                          value={scheduleItem.from}
-                          onChange={(e) =>
-                            setScheduleItemValue(index, 'from', e.target.value)
-                          }
-                        />
-
-                        <Input
-                          name="to"
-                          label="Até"
-                          type="time"
-                          value={scheduleItem.to}
-                          onChange={(e) =>
-                            setScheduleItemValue(index, 'to', e.target.value)
-                          }
-                        />
-                      </ScheduleItem>
-
-                      <ScheduleButtonContainer>
-                        <div />
-                        <button
-                          onClick={(e) =>
-                            handleRemoveScheduleItem(e, scheduleItem.id)
-                          }
-                        >
-                          Excluir horário
-                        </button>
-                        <div />
-                      </ScheduleButtonContainer>
-                    </ScheduleContainer>
-                  );
-                })}
-              </fieldset>
+              <ScheduleItemSection
+                items={scheduleItems}
+                onUpdateItems={(items) => {
+                  setScheduleItems(items);
+                }}
+              />
 
               <footer>
                 <p>

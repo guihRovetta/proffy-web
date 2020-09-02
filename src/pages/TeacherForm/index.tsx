@@ -1,4 +1,4 @@
-import React, { useState, FormEvent } from 'react';
+import React, { useState, useEffect, FormEvent } from 'react';
 import { useHistory } from 'react-router-dom';
 
 import PageHeader from '../../components/PageHeader';
@@ -22,8 +22,9 @@ import {
 } from './styles';
 
 function TeacherForm() {
-  const [name, setName] = useState('');
   const [avatar, setAvatar] = useState('');
+  const [name, setName] = useState('');
+  const [lastname, setLastname] = useState('');
   const [whatsapp, setWhatsapp] = useState('');
   const [bio, setBio] = useState('');
 
@@ -35,6 +36,20 @@ function TeacherForm() {
   ]);
 
   const history = useHistory();
+
+  useEffect(() => {
+    function getUserBasicData() {
+      api.get('users').then((response) => {
+        const { name, lastname, avatar } = response.data.user;
+
+        setAvatar(avatar);
+        setName(name);
+        setLastname(lastname);
+      });
+    }
+
+    getUserBasicData();
+  }, []);
 
   function handleAddNewScheduleItem() {
     const scheduleItem = {
@@ -106,7 +121,7 @@ function TeacherForm() {
                   src="https://github.com/guihRovetta.png"
                   alt="Imagem de perfil"
                 />
-                <span>Guilherme Rovetta</span>
+                <span>{`${name} ${lastname}`}</span>
               </div>
 
               <TextMaskedInput
