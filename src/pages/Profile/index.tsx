@@ -6,7 +6,6 @@ import * as yup from 'yup';
 import PageHeader from '../../components/PageHeader';
 import Input from '../../components/Input';
 import Textarea from '../../components/Textarea';
-import Select from '../../components/Select';
 import TextMaskedInput from '../../components/TextMaskedInput';
 import Button from '../../components/Button';
 import Modal from '../../components/Modal';
@@ -21,7 +20,7 @@ import successIcon from '../../assets/images/icons/success-check-icon.svg';
 
 import api from '../../services/api';
 
-import { currencyMask, phoneMask } from '../../utils/Masks';
+import { phoneMask } from '../../utils/Masks';
 import convertMinutesToHour from '../../utils/ConvertMinutesToHours';
 
 import {
@@ -33,6 +32,7 @@ import {
   InputNameContainer,
   InputContactContainer,
 } from './styles';
+import AboutClassSection from '../../components/AboutClassSection';
 
 interface ScheduleItemResponse {
   week_day: number;
@@ -284,42 +284,16 @@ function Profile() {
                 />
               </fieldset>
 
-              <fieldset>
-                <legend>Sobre a aula</legend>
-
-                <InputContactContainer>
-                  <Select
-                    name="subject"
-                    label="Matéria"
-                    value={subject}
-                    onChange={(e) => {
-                      setSubject(e.target.value);
-                    }}
-                    options={[
-                      { value: 'Artes', label: 'Artes' },
-                      { value: 'Biologia', label: 'Biologia' },
-                      { value: 'Ciências', label: 'Ciências' },
-                      { value: 'Educação Física', label: 'Educação Física' },
-                      { value: 'Física', label: 'Física' },
-                      { value: 'Geografia', label: 'Geografia' },
-                      { value: 'História', label: 'História' },
-                      { value: 'Matemática', label: 'Matemática' },
-                      { value: 'Português', label: 'Português' },
-                      { value: 'Química', label: 'Química' },
-                    ]}
-                  />
-
-                  <TextMaskedInput
-                    name="cost"
-                    label="Custo da sua hora por aula"
-                    value={cost}
-                    onChange={(e) => {
-                      setCost(e.target.value);
-                    }}
-                    mask={currencyMask}
-                  />
-                </InputContactContainer>
-              </fieldset>
+              <AboutClassSection
+                classSubject={subject}
+                onUpdateSubject={(subject) => {
+                  setSubject(subject);
+                }}
+                classCost={cost}
+                onUpdateCost={(cost) => {
+                  setCost(cost);
+                }}
+              />
 
               <ScheduleItemSection
                 items={scheduleItems}

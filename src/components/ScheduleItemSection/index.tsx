@@ -64,6 +64,7 @@ const ScheduleItemSection: React.FC<ScheduleItemSectionProps> = ({
     });
 
     setScheduleItems(updatedScheduleItems);
+    onUpdateItems(updatedScheduleItems);
   }
 
   return (
