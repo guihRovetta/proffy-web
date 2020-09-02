@@ -2,24 +2,19 @@ import React, { useState, useEffect, FormEvent } from 'react';
 import { useHistory } from 'react-router-dom';
 
 import PageHeader from '../../components/PageHeader';
-import Input from '../../components/Input';
 import Textarea from '../../components/Textarea';
-import Select from '../../components/Select';
 import TextMaskedInput from '../../components/TextMaskedInput';
 
-import warningIcon from '../../assets/images/icons/warning.svg';
 import rocketIcon from '../../assets/images/icons/rocket.svg';
 
 import api from '../../services/api';
 
-import { currencyMask, phoneMask } from '../../utils/Masks';
+import { phoneMask } from '../../utils/Masks';
 
-import {
-  Container,
-  TopFormInputContainer,
-  ScheduleItem,
-  InputContactContainer,
-} from './styles';
+import { Container, TopFormInputContainer } from './styles';
+import FormFooterSection from '../../components/FormFooterSection';
+import ScheduleItemSection from '../../components/ScheduleItemSection';
+import AboutClassSection from '../../components/AboutClassSection';
 
 function TeacherForm() {
   const [avatar, setAvatar] = useState('');
@@ -32,8 +27,10 @@ function TeacherForm() {
   const [cost, setCost] = useState('');
 
   const [scheduleItems, setScheduleItems] = useState([
-    { week_day: 0, from: '', to: '' },
+    { id: 0, week_day: 0, from: '', to: '' },
   ]);
+
+  const [formValid, setFormValid] = useState(false);
 
   const history = useHistory();
 
@@ -50,32 +47,6 @@ function TeacherForm() {
 
     getUserBasicData();
   }, []);
-
-  function handleAddNewScheduleItem() {
-    const scheduleItem = {
-      week_day: 0,
-      from: '',
-      to: '',
-    };
-
-    setScheduleItems([...scheduleItems, scheduleItem]);
-  }
-
-  function setScheduleItemValue(
-    position: Number,
-    field: string,
-    value: string
-  ) {
-    const updatedScheduleItems = scheduleItems.map((scheduleItem, index) => {
-      if (index === position) {
-        return { ...scheduleItem, [field]: value };
-      }
-
-      return scheduleItem;
-    });
-
-    setScheduleItems(updatedScheduleItems);
-  }
 
   function handleCreateClass(e: FormEvent) {
     e.preventDefault();
@@ -145,105 +116,25 @@ function TeacherForm() {
             />
           </fieldset>
 
-          <fieldset>
-            <legend>Sobre a aula</legend>
+          <AboutClassSection
+            classSubject={subject}
+            onUpdateSubject={(subject) => {
+              setSubject(subject);
+            }}
+            classCost={cost}
+            onUpdateCost={(cost) => {
+              setCost(cost);
+            }}
+          />
 
-            <InputContactContainer>
-              <Select
-                name="subject"
-                label="Matéria"
-                value={subject}
-                onChange={(e) => {
-                  setSubject(e.target.value);
-                }}
-                options={[
-                  { value: 'Artes', label: 'Artes' },
-                  { value: 'Biologia', label: 'Biologia' },
-                  { value: 'Ciências', label: 'Ciências' },
-                  { value: 'Educação Física', label: 'Educação Física' },
-                  { value: 'Física', label: 'Física' },
-                  { value: 'Geografia', label: 'Geografia' },
-                  { value: 'História', label: 'História' },
-                  { value: 'Matemática', label: 'Matemática' },
-                  { value: 'Português', label: 'Português' },
-                  { value: 'Química', label: 'Química' },
-                ]}
-              />
+          <ScheduleItemSection
+            items={scheduleItems}
+            onUpdateItems={(items) => {
+              setScheduleItems(items);
+            }}
+          />
 
-              <TextMaskedInput
-                name="cost"
-                label="Custo da sua hora por aula"
-                value={cost}
-                onChange={(e) => {
-                  setCost(e.target.value);
-                }}
-                mask={currencyMask}
-              />
-            </InputContactContainer>
-          </fieldset>
-
-          <fieldset>
-            <legend>
-              Horários disponíveis
-              <button type="button" onClick={handleAddNewScheduleItem}>
-                + Novo Horário
-              </button>
-            </legend>
-
-            {scheduleItems.map((scheduleItem, index) => {
-              return (
-                <ScheduleItem key={index}>
-                  <Select
-                    name="week_day"
-                    label="Dia da semana"
-                    value={scheduleItem.week_day}
-                    onChange={(e) =>
-                      setScheduleItemValue(index, 'week_day', e.target.value)
-                    }
-                    options={[
-                      { value: '0', label: 'Domingo' },
-                      { value: '1', label: 'Segunda-feira' },
-                      { value: '2', label: 'Terça-feira' },
-                      { value: '3', label: 'Quarta-feira' },
-                      { value: '4', label: 'Quinta-feira' },
-                      { value: '5', label: 'Sexta-feira' },
-                      { value: '6', label: 'Sábado' },
-                    ]}
-                    customClass="week-day-input"
-                  />
-
-                  <Input
-                    name="from"
-                    label="Das"
-                    type="time"
-                    value={scheduleItem.from}
-                    onChange={(e) =>
-                      setScheduleItemValue(index, 'from', e.target.value)
-                    }
-                  />
-
-                  <Input
-                    name="to"
-                    label="Até"
-                    type="time"
-                    value={scheduleItem.to}
-                    onChange={(e) =>
-                      setScheduleItemValue(index, 'to', e.target.value)
-                    }
-                  />
-                </ScheduleItem>
-              );
-            })}
-          </fieldset>
-
-          <footer>
-            <p>
-              <img src={warningIcon} alt="Aviso importante" />
-              Importante! <br />
-              Preencha todos os dados
-            </p>
-            <button type="submit">Salvar cadastro</button>
-          </footer>
+          <FormFooterSection title="Salvar cadastro" isDisabled={formValid} />
         </form>
       </main>
     </Container>

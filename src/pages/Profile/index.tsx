@@ -85,6 +85,31 @@ function Profile() {
   const history = useHistory();
 
   useEffect(() => {
+    function getProfileData() {
+      api.get('users').then((response) => {
+        const {
+          user: { avatar, name, lastname, email, whatsapp, bio },
+        } = response.data;
+
+        setAvatar(avatar);
+        setName(name);
+        setLastname(lastname);
+        setEmail(email);
+        setWhatsapp(whatsapp);
+        setBio(bio || '');
+
+        const userClass = response.data.class;
+
+        if (userClass) {
+          const { subject, cost, id } = userClass;
+
+          setSubject(subject);
+          setCost(cost);
+          getScheduleClassData(id);
+        }
+      });
+    }
+
     getProfileData();
   }, []);
 
@@ -169,36 +194,11 @@ function Profile() {
     history.push('/');
   }
 
-  function getProfileData() {
-    api.get('users').then((response) => {
-      const {
-        user: { avatar, name, lastname, email, whatsapp, bio },
-      } = response.data;
-
-      setAvatar(avatar);
-      setName(name);
-      setLastname(lastname);
-      setEmail(email);
-      setWhatsapp(whatsapp);
-      setBio(bio || '');
-
-      const userClass = response.data.class;
-
-      if (userClass) {
-        const { subject, cost, id } = userClass;
-
-        setSubject(subject);
-        setCost(cost);
-        getScheduleClassData(id);
-      }
-    });
-  }
-
   function getScheduleClassData(id: number) {
     api.get(`classes/${id}`).then((response) => {
       const scheduleItems = response.data;
 
-      scheduleItems.map((item: ScheduleItemResponse) => {
+      scheduleItems.forEach((item: ScheduleItemResponse) => {
         item.from = convertMinutesToHour(item.from);
         item.to = convertMinutesToHour(item.to);
       });
@@ -255,7 +255,7 @@ function Profile() {
 
                 <InputContactContainer>
                   <Input
-                    name="avatar"
+                    name="email"
                     label="Email"
                     value={email}
                     onChange={(e) => {
