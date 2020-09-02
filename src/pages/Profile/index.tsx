@@ -11,6 +11,7 @@ import TextMaskedInput from '../../components/TextMaskedInput';
 import Button from '../../components/Button';
 import Modal from '../../components/Modal';
 import ScheduleItemSection from '../../components/ScheduleItemSection';
+import FormFooterSection from '../../components/FormFooterSection';
 
 import defaultProfileImg from '../../assets/images/default-profile.jpeg';
 
@@ -327,16 +328,10 @@ function Profile() {
                 }}
               />
 
-              <footer>
-                <p>
-                  <img src={warningIcon} alt="Aviso importante" />
-                  Importante! <br />
-                  Preencha todos os dados corretamente
-                </p>
-                <Button type="submit" disabled={!formValid}>
-                  Atualizar cadastro
-                </Button>
-              </footer>
+              <FormFooterSection
+                title="Atualizar cadastro"
+                isDisabled={formValid}
+              />
             </form>
           </main>
         </Container>
